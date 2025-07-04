@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Spelling Sound Quiz</title>
+<style>
+    body {
+      font-family: sans-serif;
+      background-color: #f0f4f8;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    button {
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #4f46e5;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3730a3;
+    }
+    .feedback, .tip, .badge, .syllables, .origin, .sentence, .reflection {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .progress {
+      margin-bottom: 1rem;
+      font-style: italic;
+      color: #555;
+    }
+    .badge {
+      background-color: #e0f7fa;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      display: inline-block;
+      animation: fadeInZoom 0.6s ease-out;
+    }
+
+    @keyframes fadeInZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    
+      background-color: #e0f7fa;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      display: inline-block;
+    }
+    textarea {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+<div class="progress" id="progress"></div>
+<h2 id="wordDisplay">🔤 Your word is: </h2>
+<p><strong>🧠 Sound Focus:</strong> <span id="phoneme"></span><p id="expandedFocus" style="font-style: italic; margin-top: -0.5rem; color: #555;"></p></p>
+<div id="choices"></div>
+<button onclick="speakWord()">🔊 Hear Word</button>
+<button onclick="speakSound()">🧠 Hear Sound</button>
+<p class="feedback" id="feedback"></p>
+<p class="tip" id="tip"></p>
+<p class="syllables" id="syllables"></p>
+<p class="origin" id="origin"></p>
+<p class="sentence" id="sentence"></p>
+<div class="badge" id="badge" style="display:none;">🏆 Badge: Decoder in Progress</div>
+<div class="reflection" id="reflectionBox" style="display: none;">
+<label for="reflect">🪞 Self-Reflection: What helped you decode this word?</label>
+<textarea id="reflect" placeholder="Type your thoughts here..." rows="3"></textarea>
+</div>
+<button onclick="nextExample()">➡️ Next Word</button>
+<p style="margin-top: 2rem; font-size: 0.85rem; text-align: center; color: #888;">© 2025 Doctor Dyslexia Dude LLC. All rights reserved. Related content (i.e., Pure &amp; Complete Phonics markings) are trademarks of Doctor Dyslexia Dude LLC.</p></div>
+<script>
+    const examples = [
+  {
+    "word": "Hyperion",
+    "phoneme": "/\u0113/",
+    "correct": "i",
+    "options": [
+      "i",
+      "y",
+      "ie",
+      "e"
+    ],
+    "phonemeSound": "ee",
+    "tip": "The letter 'i' spells the /\u0113/ sound in the third syllable of 'Hyperion'. (#10 of 14 spellings for /\u0113/)",
+    "syllables": "Hy \u2013 per \u2013 i \u2013 on",
+    "origin": "Greek; Hyperion was the Titan god of light",
+    "sentence": "In the myth, Hyperion was the Titan god of light.",
+    "expandedFocus": "Listen for the /\u0113/ sound in the third syllable."
+  },
+  {
+    "word": "Guinevere",
+    "phoneme": "/\u0259/",
+    "correct": "e",
+    "options": [
+      "e",
+      "a",
+      "o",
+      "u"
+    ],
+    "phonemeSound": "uh",
+    "tip": "The schwa /\u0259/ sound in 'ne' is spelled with the letter 'e'. (#3 of 28 spellings for /\u0259/)",
+    "syllables": "Gui \u2013 ne \u2013 vere",
+    "origin": "Welsh; legendary queen in Arthurian legend",
+    "sentence": "Guinevere was the queen in the tales of King Arthur.",
+    "expandedFocus": "Listen for the /\u0259/ sound in the second syllable."
+  },
+  {
+    "word": "Quetzalcoatl",
+    "phoneme": "/w\u014f/",
+    "correct": "a",
+    "options": [
+      "a",
+      "o",
+      "oa",
+      "tl"
+    ],
+    "phonemeSound": "wah",
+    "tip": "The letter 'a' is its own syllable in 'co-a-tl', representing the /w\u014f/ sound due to its Nahuatl origin.",
+    "syllables": "Quet \u2013 zal \u2013 co \u2013 a \u2013 tl",
+    "origin": "Nahuatl; feathered serpent god in Aztec mythology",
+    "sentence": "Quetzalcoatl was worshipped as the feathered serpent god.",
+    "expandedFocus": "Listen for the /w\u014f/ sound in the fourth syllable."
+  },
+  {
+    "word": "Aesculapius",
+    "phoneme": "/\u0115/",
+    "correct": "Ae",
+    "options": [
+      "Ae",
+      "E",
+      "ai",
+      "e"
+    ],
+    "phonemeSound": "eh",
+    "tip": "The digraph 'Ae' at the start spells the short /\u0115/ sound. (#8 of 9 spellings for /\u0115/)",
+    "syllables": "Aes \u2013 cu \u2013 la \u2013 pi \u2013 us",
+    "origin": "Latin; Roman god of medicine",
+    "sentence": "Aesculapius was worshipped as a god of healing.",
+    "expandedFocus": "Listen for the /\u0115/ sound in the first syllable."
+  },
+  {
+    "word": "Laocoon",
+    "phoneme": "/\u014f/",
+    "correct": "o",
+    "options": [
+      "o",
+      "aw",
+      "au",
+      "a"
+    ],
+    "phonemeSound": "aw",
+    "tip": "The second 'o' spells the /\u014f/ sound in 'coo'. (#1 of 11 spellings for /\u014f/)",
+    "syllables": "La \u2013 o \u2013 co \u2013 on",
+    "origin": "Greek; Trojan priest in mythology",
+    "sentence": "Laocoon warned the Trojans about the wooden horse.",
+    "expandedFocus": "Listen for the /\u014f/ sound in the second syllable."
+  },
+  {
+    "word": "Minotaur",
+    "phoneme": "/or/",
+    "correct": "aur",
+    "options": [
+      "aur",
+      "or",
+      "our",
+      "oar"
+    ],
+    "phonemeSound": "or",
+    "tip": "The ending 'aur' spells the /or/ sound in 'Minotaur'. (#6 of 7 spellings for /or/)",
+    "syllables": "Mi \u2013 no \u2013 taur",
+    "origin": "Greek; creature with the head of a bull and body of a man",
+    "sentence": "Theseus defeated the Minotaur in the Labyrinth.",
+    "expandedFocus": "Listen for the /or/ sound in the third syllable."
+  },
+  {
+    "word": "Narcissus",
+    "phoneme": "/\u0259/",
+    "correct": "u",
+    "options": [
+      "u",
+      "o",
+      "a",
+      "e"
+    ],
+    "phonemeSound": "uh",
+    "tip": "The final 'u' in 'sus' spells the schwa /\u0259/ sound.",
+    "syllables": "Nar \u2013 cis \u2013 sus",
+    "origin": "Greek; youth who loved his own reflection",
+    "sentence": "The story of Narcissus gave us the word narcissism.",
+    "expandedFocus": "Listen for the /\u0259/ sound in the third syllable."
+  },
+  {
+    "word": "Terpsichore",
+    "phoneme": "/er/",
+    "correct": "er",
+    "options": [
+      "er",
+      "ir",
+      "ur",
+      "ear"
+    ],
+    "phonemeSound": "er",
+    "tip": "The 'er' in the first syllable spells the /er/ sound.",
+    "syllables": "Terp \u2013 si \u2013 cho \u2013 re",
+    "origin": "Greek; Muse of dance and chorus",
+    "sentence": "Artists sought Terpsichore's inspiration for graceful movement.",
+    "expandedFocus": "Listen for the /er/ sound in the first syllable."
+  },
+  {
+    "word": "Isaiah",
+    "phoneme": "/\u012b/",
+    "correct": "I",
+    "options": [
+      "I",
+      "ai",
+      "ie",
+      "igh"
+    ],
+    "phonemeSound": "eye",
+    "tip": "The initial 'I' spells the long /\u012b/ sound in 'Isaiah'.",
+    "syllables": "I \u2013 sai \u2013 ah",
+    "origin": "Hebrew; major prophet in the Old Testament",
+    "sentence": "Isaiah spoke of peace and justice for all people.",
+    "expandedFocus": "Listen for the /\u012b/ sound in the first syllable."
+  },
+  {
+    "word": "Beowulf",
+    "phoneme": "/\u0101/",
+    "correct": "e",
+    "options": [
+      "eo",
+      "e",
+      "o",
+      "w"
+    ],
+    "phonemeSound": "ay",
+    "tip": "The 'e' in the first syllable of 'Beowulf' spells the long /\u0101/ sound. (#7 of 12 spellings for /\u0101/)",
+    "syllables": "Be \u2013 o \u2013 wulf",
+    "origin": "Old English; legendary hero of an epic poem",
+    "sentence": "Beowulf defeated the monster Grendel.",
+    "expandedFocus": "Listen for the /\u0101/ sound in the first syllable."
+  }
+];
+
+    let current = 0;
+    let correctCount = 0;
+
+    function loadExample() {
+      const ex = examples[current];
+      document.getElementById("wordDisplay").innerText = `🔤 Your word is: ${ex.word}`;
+      document.getElementById("phoneme").innerText = `${ex.phoneme}`;
+      document.getElementById("expandedFocus").innerText = ex.expandedFocus || "";
+      document.getElementById("progress").innerText = `Example ${current + 1} of ${examples.length} | ✅ Correct: ${correctCount}`;
+      document.getElementById("choices").innerHTML = "";
+      document.getElementById("feedback").innerText = "";
+      document.getElementById("tip").innerText = "";
+      document.getElementById("badge").style.display = "none";
+      document.getElementById("syllables").innerText = "";
+      document.getElementById("origin").innerText = "";
+      document.getElementById("sentence").innerText = "";
+      document.getElementById("reflect").value = ""; document.getElementById("reflectionBox").style.display = "none";
+
+      ex.options.forEach((opt) => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(opt);
+        document.getElementById("choices").appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const ex = examples[current];
+      const isCorrect = selected === ex.correct;
+      const feedback = document.getElementById("feedback");
+      const tip = document.getElementById("tip");
+      const badge = document.getElementById("badge");
+
+      if (isCorrect) {
+        correctCount++;
+        feedback.innerText = `✅ Correct! '${ex.correct}' spells ${ex.phoneme} in '${ex.word}'.`;
+        tip.innerText = `📘 Tip: ${ex.tip}`;
+        badge.style.display = "inline-block"; document.getElementById("reflectionBox").style.display = "block";
+        document.getElementById("syllables").innerText = `🧩 Syllables: ${ex.syllables}`;
+        document.getElementById("origin").innerText = `🌍 Origin: ${ex.origin}`;
+        document.getElementById("sentence").innerText = `📖 Sentence: ${ex.sentence}`;
+      } else {
+        feedback.innerText = `❌ Try again. '${selected}' does not spell ${ex.phoneme} in '${ex.word}'.`;
+        tip.innerText = "";
+        badge.style.display = "none";
+      }
+
+      speakFeedback(feedback.innerText);
+    }
+
+    function speakWord() {
+      const utterance = new SpeechSynthesisUtterance(`The word is ${examples[current].word}`);
+      utterance.lang = "en-US";
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
+    }
+
+    function speakSound() {
+      const utterance = new SpeechSynthesisUtterance(examples[current].phonemeSound);
+      utterance.lang = "en-US";
+      utterance.rate = 0.8;
+      speechSynthesis.speak(utterance);
+    }
+
+    function speakFeedback(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      utterance.rate = 0.85;
+      speechSynthesis.speak(utterance);
+    }
+
+    function nextExample() {
+      current = (current + 1) % examples.length;
+      loadExample();
+    }
+
+    loadExample();
+  </script>
+<div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+<h2 style="text-align: center;">Meet your decoding team!</h2>
+<p style="text-align: center; max-width: 600px;">Dr. Dyslexia Dude and the Decoders will guide you on your pronunciation journey.<br/>Click the button below to begin.</p><p style="font-size: 16px; font-style: italic; max-width: 600px; color: #555;">Core Belief: If it’s in the dictionary, it’s accessible and teachable!</p>
+<button onclick="document.getElementById('splash-screen').style.display='none';" style="padding: 12px 24px; font-size: 18px; margin-top: 20px;">Start Decoding</button>
+</div>
+</body>
+</html>
