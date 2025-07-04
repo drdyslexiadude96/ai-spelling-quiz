@@ -6,8 +6,7 @@
 
 ## 🚀 Live Demo
 Try it live here:  
-👉 https://dyslexia1906.github.io/ai-spelling-quiz/
-
+👉 
 ---
 
 ## 🧠 About
