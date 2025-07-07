@@ -76,11 +76,28 @@
       border-radius: 0.5rem;
       border: 1px solid #ccc;
     }
-  </style>
+  
+.progress-bar {
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 0.5rem;
+  height: 1rem;
+  margin-bottom: 0.5rem;
+}
+.progress-fill {
+  height: 100%;
+  background-color: #10b981;
+  border-radius: 0.5rem;
+  width: 0%;
+  transition: width 0.3s ease-in-out;
+}
+#wordDisplay 
+</style>
 </head>
 <body>
 <div class="card">
 <div class="progress" id="progress"></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 <h2 id="wordDisplay">🔤 Your word is: </h2>
 <p><strong>🧠 Sound Focus:</strong> <span id="phoneme"></span><p id="expandedFocus" style="font-style: italic; margin-top: -0.5rem; color: #555;"></p></p>
 <div id="choices"></div>
@@ -97,8 +114,178 @@
 <textarea id="reflect" placeholder="Type your thoughts here..." rows="3"></textarea>
 </div>
 <button onclick="nextExample()">➡️ Next Word</button>
-<p style="margin-top: 2rem; font-size: 0.85rem; text-align: center; color: #888;">© 2025 Doctor Dyslexia Dude LLC. All rights reserved. Related content (i.e., Pure &amp; Complete Phonics markings) are trademarks of Doctor Dyslexia Dude LLC.</p></div>
+<p style="margin-top: 2rem; font-size: 0.85rem; text-align: center; color: #888;">© 2025 Doctor Dyslexia Dude LLC. All rights reserved. Related content (i.e., Pure &amp; Complete Phonics markings) are trademarks of Doctor Dyslexia Dude LLC.</p>
+<div style="margin-top: 2rem; border-top: 2px solid #ccc; padding-top: 1rem;">
+<details open="">
+<summary style="font-size: 1.1rem; font-weight: bold; cursor: pointer;">📘 Sound Spellings &amp; Frequency Reference (Fully Highlighted)</summary>
+
+<div style="margin-top: 1rem; font-size: 0.95rem; line-height: 1.6;">
+<h3>/ā/</h3>
+<ol>
+<li><u>a</u> as in <span style="color:#1d4ed8;">a</span></li>
+<li><u>ai</u> as in r<span style="color:#1d4ed8;">ai</span>ny</li>
+<li><u>ay</u> as in d<span style="color:#1d4ed8;">ay</span></li>
+<li><u>ei</u> as in v<span style="color:#1d4ed8;">ei</span>n</li>
+<li><u>ey</u> as in pr<span style="color:#1d4ed8;">ey</span></li>
+<li><u>ea</u> as in gr<span style="color:#1d4ed8;">ea</span>t</li>
+<li><u>e</u> as in cr<span style="color:#1d4ed8;">e</span>pe</li>
+<li><u>ee</u> as in entr<span style="color:#1d4ed8;">ee</span></li>
+<li><u>au</u> as in g<span style="color:#1d4ed8;">au</span>ge</li>
+<li><u>ez</u> as in rend<span style="color:#1d4ed8;">ez</span>vous</li>
+<li><u>ie</u> as in linger<span style="color:#1d4ed8;">ie</span></li>
+<li><u>é</u> as in resum<span style="color:#1d4ed8;">é</span></li>
+</ol>
+<h3>/∂/ (schwa mark/sound)</h3>
+<ol>
+<li><u>u</u> as in <span style="color:#1d4ed8;">u</span>p</li>
+<li><u>a</u> as in <span style="color:#1d4ed8;">a</span></li>
+<li><u>e</u> as in gard<span style="color:#1d4ed8;">e</span>n</li>
+<li><u>i</u> as in ed<span style="color:#1d4ed8;">i</span>ble</li>
+<li><u>o</u> as in <span style="color:#1d4ed8;">o</span>nion</li>
+<li><u>oe</u> as in d<span style="color:#1d4ed8;">oe</span>s</li>
+<li><u>io</u> as in fus<span style="color:#1d4ed8;">io</span>n</li>
+<li><u>ou</u> as in d<span style="color:#1d4ed8;">ou</span>bled</li>
+<li><u>oo</u> as in fl<span style="color:#1d4ed8;">oo</span>d</li>
+<li><u>eu</u> as in past<span style="color:#1d4ed8;">eu</span>rized</li>
+<li><u>ei</u> as in decaff<span style="color:#1d4ed8;">ei</span>nated</li>
+<li><u>y</u> as in s<span style="color:#1d4ed8;">y</span>ringe</li>
+<li><u>iou</u> as in obnox<span style="color:#1d4ed8;">iou</span>s</li>
+<li><u>au</u> as in <span style="color:#1d4ed8;">au</span>thoritative</li>
+<li><u>ai</u> as in capt<span style="color:#1d4ed8;">ai</span>n</li>
+<li><u>ia</u> as in cord<span style="color:#1d4ed8;">ia</span>l</li>
+<li><u>eau</u> as in bur<span style="color:#1d4ed8;">eau</span>cratic</li>
+<li><u>ea</u> as in s<span style="color:#1d4ed8;">ea</span>rgeant</li>
+<li><u>ae</u> as in Mich<span style="color:#1d4ed8;">ae</span>l</li>
+<li><u>ie</u> as in consc<span style="color:#1d4ed8;">ie</span>nce</li>
+<li><u>eo</u> as in dung<span style="color:#1d4ed8;">eo</span>n</li>
+<li><u>eou</u> as in gorg<span style="color:#1d4ed8;">eou</span>s</li>
+<li><u>oi</u> as in tort<span style="color:#1d4ed8;">oi</span>se</li>
+<li><u>ue</u> as in g<span style="color:#1d4ed8;">ue</span>rrilla</li>
+<li><u>iu</u> as in nasturt<span style="color:#1d4ed8;">iu</span>m</li>
+<li><u>ui</u> as in bisc<span style="color:#1d4ed8;">ui</span>t</li>
+<li><u>ah</u> as in verand<span style="color:#1d4ed8;">ah</span></li>
+<li><u>ya</u> as in gua<span style="color:#1d4ed8;">ya</span>bera</li>
+</ol>
+<!-- You can repeat this for all remaining categories (3–10) if needed -->
+<h3>/ĕ/</h3>
+<ol>
+<li><u>e</u> as in b<span style="color:#1d4ed8;">e</span>st</li>
+<li><u>ea</u> as in br<span style="color:#1d4ed8;">ea</span>d</li>
+<li><u>ai</u> as in s<span style="color:#1d4ed8;">ai</span>d</li>
+<li><u>ay</u> as in s<span style="color:#1d4ed8;">ay</span>s</li>
+<li><u>a</u> as in m<span style="color:#1d4ed8;">a</span>ny</li>
+<li><u>ie</u> as in fr<span style="color:#1d4ed8;">ie</span>nds</li>
+<li><u>ue</u> as in g<span style="color:#1d4ed8;">ue</span>ss</li>
+<li><u>ae</u> as in <span style="color:#1d4ed8;">ae</span>sthetic</li>
+<li><u>eo</u> as in l<span style="color:#1d4ed8;">eo</span>pards</li>
+</ol>
+<h3>/ē/</h3>
+<ol>
+<li><u>e</u> as in sh<span style="color:#1d4ed8;">e</span></li>
+<li><u>ee</u> as in s<span style="color:#1d4ed8;">ee</span>ds</li>
+<li><u>y</u> as in hand<span style="color:#1d4ed8;">y</span></li>
+<li><u>ea</u> as in <span style="color:#1d4ed8;">ea</span>ch</li>
+<li><u>ay</u> as in Sund<span style="color:#1d4ed8;">ay</span></li>
+<li><u>ie</u> as in bel<span style="color:#1d4ed8;">ie</span>ving</li>
+<li><u>ei</u> as in dec<span style="color:#1d4ed8;">ei</span>ved</li>
+<li><u>eo</u> as in p<span style="color:#1d4ed8;">eo</span>ple</li>
+<li><u>ey</u> as in k<span style="color:#1d4ed8;">ey</span></li>
+<li><u>i</u> as in mar<span style="color:#1d4ed8;">i</span>ne</li>
+<li><u>ae</u> as in l<span style="color:#1d4ed8;">ae</span>vae</li>
+<li><u>oe</u> as in subp<span style="color:#1d4ed8;">oe</span>na</li>
+<li><u>oy</u> as in bu<span style="color:#1d4ed8;">oy</span></li>
+<li><u>j</u> as in <span style="color:#1d4ed8;">j</span>fjord</li>
+</ol>
+<h3>/ĭ/</h3>
+<ol>
+<li><u>i</u> as in <span style="color:#1d4ed8;">i</span>t</li>
+<li><u>y</u> as in m<span style="color:#1d4ed8;">y</span>stery</li>
+<li><u>ie</u> as in s<span style="color:#1d4ed8;">ie</span>ve</li>
+<li><u>ui</u> as in b<span style="color:#1d4ed8;">ui</span>ld</li>
+<li><u>u</u> as in b<span style="color:#1d4ed8;">u</span>sy</li>
+<li><u>e</u> as in enjoyabl<span style="color:#1d4ed8;">e</span></li>
+<li><u>a</u> as in voy<span style="color:#1d4ed8;">a</span>ge</li>
+<li><u>ee</u> as in b<span style="color:#1d4ed8;">ee</span>n</li>
+<li><u>ae</u> as in Aeg<span style="color:#1d4ed8;">ae</span>an</li>
+<li><u>ei</u> as in count<span style="color:#1d4ed8;">ei</span>rfeit</li>
+<li><u>ia</u> as in marr<span style="color:#1d4ed8;">ia</span>ge</li>
+<li><u>o</u> as in m<span style="color:#1d4ed8;">o</span>nocle</li>
+</ol>
+<h3>/ī/</h3>
+<ol>
+<li><u>i</u> as in M<span style="color:#1d4ed8;">i</span>ke</li>
+<li><u>y</u> as in tr<span style="color:#1d4ed8;">y</span></li>
+<li><u>ie</u> as in l<span style="color:#1d4ed8;">ie</span></li>
+<li><u>oi</u> as in ch<span style="color:#1d4ed8;">oi</span>r</li>
+<li><u>uy</u> as in g<span style="color:#1d4ed8;">uy</span></li>
+<li><u>oy</u> as in c<span style="color:#1d4ed8;">oy</span>ote</li>
+<li><u>ey</u> as in g<span style="color:#1d4ed8;">ey</span>ser</li>
+<li><u>ia</u> as in d<span style="color:#1d4ed8;">ia</span>mond</li>
+<li><u>ei</u> as in se<span style="color:#1d4ed8;">ei</span>smograph</li>
+<li><u>ay</u> as in jambal<span style="color:#1d4ed8;">ay</span>a</li>
+<li><u>ai</u> as in Th<span style="color:#1d4ed8;">ai</span>land</li>
+<li><u>ui</u> as in g<span style="color:#1d4ed8;">ui</span>de</li>
+</ol>
+<h3>/k/</h3>
+<ol>
+<li><u>c</u> as in <span style="color:#1d4ed8;">c</span>at</li>
+<li><u>k</u> as in <span style="color:#1d4ed8;">k</span>itten</li>
+<li><u>ck</u> as in ba<span style="color:#1d4ed8;">ck</span></li>
+<li><u>ch</u> as in s<span style="color:#1d4ed8;">ch</span>ool</li>
+<li><u>x</u> as in e<span style="color:#1d4ed8;">x</span>cited</li>
+<li><u>qu</u> as in mos<span style="color:#1d4ed8;">qu</span>ito</li>
+<li><u>q</u> as in Ira<span style="color:#1d4ed8;">q</span></li>
+</ol>
+<h3>/er/</h3>
+<ol>
+<li><u>er</u> as in p<span style="color:#1d4ed8;">er</span>son</li>
+<li><u>ir</u> as in sh<span style="color:#1d4ed8;">ir</span>t</li>
+<li><u>ur</u> as in p<span style="color:#1d4ed8;">ur</span>chase</li>
+<li><u>or</u> as in act<span style="color:#1d4ed8;">or</span></li>
+<li><u>ar</u> as in particul<span style="color:#1d4ed8;">ar</span></li>
+<li><u>ear</u> as in <span style="color:#1d4ed8;">ear</span>th</li>
+<li><u>yr</u> as in s<span style="color:#1d4ed8;">yr</span>up</li>
+<li><u>r</u> as in I<span style="color:#1d4ed8;">r</span>eland</li>
+<li><u>our</u> as in c<span style="color:#1d4ed8;">our</span>age</li>
+<li><u>ier</u> as in sold<span style="color:#1d4ed8;">ier</span></li>
+<li><u>eur</u> as in chauf<span style="color:#1d4ed8;">eur</span></li>
+<li><u>ol</u> as in c<span style="color:#1d4ed8;">ol</span>onel</li>
+<li><u>oar</u> as in cupb<span style="color:#1d4ed8;">oar</span>d</li>
+<li><u>uer</u> as in beleag<span style="color:#1d4ed8;">uer</span>ed</li>
+</ol>
+<h3>/ŏ/</h3>
+<ol>
+<li><u>o</u> as in G<span style="color:#1d4ed8;">o</span>d</li>
+<li><u>au</u> as in <span style="color:#1d4ed8;">au</span>to</li>
+<li><u>aw</u> as in <span style="color:#1d4ed8;">aw</span>ful</li>
+<li><u>oa</u> as in br<span style="color:#1d4ed8;">oa</span>d</li>
+<li><u>a</u> as in f<span style="color:#1d4ed8;">a</span>ther</li>
+<li><u>ou</u> as in c<span style="color:#1d4ed8;">ou</span>gh</li>
+<li><u>ow</u> as in kn<span style="color:#1d4ed8;">ow</span>ledge</li>
+<li><u>e</u> as in <span style="color:#1d4ed8;">e</span>ntrée</li>
+<li><u>eau</u> as in bur<span style="color:#1d4ed8;">eau</span>cracy</li>
+<li><u>i</u> as in linger<span style="color:#1d4ed8;">i</span>e</li>
+<li><u>ah</u> as in Ut<span style="color:#1d4ed8;">ah</span></li>
+</ol>
+<h3>/or/</h3>
+<ol>
+<li><u>or</u> as in <span style="color:#1d4ed8;">or</span>der</li>
+<li><u>our</u> as in f<span style="color:#1d4ed8;">our</span></li>
+<li><u>oor</u> as in fl<span style="color:#1d4ed8;">oor</span></li>
+<li><u>ar</u> as in qu<span style="color:#1d4ed8;">ar</span>ter</li>
+<li><u>oar</u> as in b<span style="color:#1d4ed8;">oar</span></li>
+<li><u>aur</u> as in dinos<span style="color:#1d4ed8;">aur</span></li>
+<li><u>ior</u> as in aggiornament<span style="color:#1d4ed8;">ior</span></li>
+</ol>
+</div></details>
+</div>
+</div>
 <script>
+function highlightGrapheme(word, grapheme) {
+  const pattern = new RegExp(grapheme, 'gi');
+  return word.replace(pattern, match => '<span class="highlight">' + match + '</span>');
+}
+
     const examples = [
   {
     "word": "Hyperion",
@@ -269,6 +456,110 @@
     "origin": "Old English; legendary hero of an epic poem",
     "sentence": "Beowulf defeated the monster Grendel.",
     "expandedFocus": "Listen for the /\u0101/ sound in the first syllable."
+  },
+  {
+    "word": "Daedalus",
+    "phoneme": "/\u0115/",
+    "correct": "ae",
+    "options": [
+      "ae",
+      "a",
+      "e",
+      "ai"
+    ],
+    "phonemeSound": "eh",
+    "tip": "The 'ae' vowel team spells the short /\u0115/ sound in 'Daedalus'.",
+    "syllables": "Dae \u2013 da \u2013 lus",
+    "origin": "Greek; inventor who built wings to escape Crete",
+    "sentence": "Daedalus warned Icarus not to fly too close to the sun.",
+    "expandedFocus": "Listen for the /\u0115/ sound in the first syllable."
+  },
+  {
+    "word": "Eurydice",
+    "phoneme": "/\u012d/",
+    "correct": "y",
+    "options": [
+      "e",
+      "y",
+      "ie",
+      "i"
+    ],
+    "phonemeSound": "ih",
+    "tip": "The letter 'y' in the second syllable spells the short /\u012d/ sound in 'Eurydice'.",
+    "syllables": "Eu \u2013 ry \u2013 di \u2013 ce",
+    "origin": "Greek; wife of Orpheus in myth",
+    "sentence": "Orpheus tried to rescue Eurydice from the underworld.",
+    "expandedFocus": "Listen for the short /\u012d/ sound in the second syllable."
+  },
+  {
+    "word": "Koschei",
+    "phoneme": "/\u0101/",
+    "correct": "ei",
+    "options": [
+      "ei",
+      "a",
+      "ay",
+      "eigh"
+    ],
+    "phonemeSound": "ay",
+    "tip": "The digraph 'ei' spells the long /\u0101/ sound at the end of 'Koschei'.",
+    "syllables": "Kosch \u2013 chei",
+    "origin": "Slavic folklore; an immortal villain",
+    "sentence": "Koschei could not be killed by ordinary means.",
+    "expandedFocus": "Listen for the /\u0101/ sound in the second syllable."
+  },
+  {
+    "word": "Romulus",
+    "phoneme": "/\u0259/",
+    "correct": "u",
+    "options": [
+      "u",
+      "a",
+      "e",
+      "o"
+    ],
+    "phonemeSound": "uh",
+    "tip": "The 'u' in the second and third syllables spells the schwa /\u0259/ sound.",
+    "syllables": "Rom \u2013 u \u2013 lus",
+    "origin": "Latin; legendary founder of Rome",
+    "sentence": "Romulus is known as the founder of Rome.",
+    "expandedFocus": "Listen for the /\u0259/ sound in the second and third syllables."
+  },
+  {
+    "word": "Zechariah",
+    "phoneme": "/k/",
+    "correct": "ch",
+    "options": [
+      "ch",
+      "k",
+      "c",
+      "ck"
+    ],
+    "phonemeSound": [
+      "k"
+    ],
+    "tip": "The letters 'ch' in the second syllable of 'Zechariah' spell the /k/ sound.",
+    "syllables": "Ze \u2013 cha \u2013 ri \u2013 ah",
+    "origin": "Hebrew; prophet in the Old Testament",
+    "sentence": "Zechariah had visions of peace and restoration.",
+    "expandedFocus": "Listen for the /k/ sound in the second syllable spelled 'ch'."
+  },
+  {
+    "word": "Chiwara",
+    "phoneme": "/\u0113/",
+    "correct": "i",
+    "options": [
+      "i",
+      "y",
+      "ie",
+      "e"
+    ],
+    "phonemeSound": "ee",
+    "tip": "The letter 'i' in 'Chi' spells the long /\u0113/ sound at the start of 'Chiwara'.",
+    "syllables": "Chi \u2013 wa \u2013 ra",
+    "origin": "African folklore; a ritual figure of farming",
+    "sentence": "The Chiwara taught people how to farm.",
+    "expandedFocus": "Listen for the long /\u0113/ sound in the first syllable."
   }
 ];
 
@@ -277,10 +568,12 @@
 
     function loadExample() {
       const ex = examples[current];
-      document.getElementById("wordDisplay").innerText = `🔤 Your word is: ${ex.word}`;
+      document.getElementById("wordDisplay").innerHTML = `🔤 Your word is: ${ex.word}`;
       document.getElementById("phoneme").innerText = `${ex.phoneme}`;
       document.getElementById("expandedFocus").innerText = ex.expandedFocus || "";
       document.getElementById("progress").innerText = `Example ${current + 1} of ${examples.length} | ✅ Correct: ${correctCount}`;
+      const percent = Math.round((correctCount / examples.length) * 100);
+      document.getElementById('progressFill').style.width = percent + '%';
       document.getElementById("choices").innerHTML = "";
       document.getElementById("feedback").innerText = "";
       document.getElementById("tip").innerText = "";
@@ -345,6 +638,8 @@
 
     function nextExample() {
       current = (current + 1) % examples.length;
+      const percent = Math.round((correctCount / examples.length) * 100);
+      document.getElementById('progressFill').style.width = percent + '%';
       loadExample();
     }
 
