@@ -6,7 +6,7 @@
 
 ## 🚀 Live Demo   
 Try it live here:  
-👉 https://drdyslexiadude96.github.io/ai-spelling-quiz/
+👉https://drdyslexiadude96.github.io/ai-spelling-quiz/?v=2
 
 
 ---
