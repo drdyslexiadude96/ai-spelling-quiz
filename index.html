@@ -96,6 +96,11 @@
 </head>
 <body>
 <div class="card">
+
+<div style="margin-bottom: 1rem;">
+  <p id="scoreDisplay" style="font-weight:bold;">🏅 Score: <span id="score">0</span></p>
+</div>
+
 <div class="progress" id="progress"></div>
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 <h2 id="wordDisplay">🔤 Your word is: </h2>
@@ -281,6 +286,11 @@
 </div>
 </div>
 <script>
+let score = 0;
+function updateScore() {
+  document.getElementById("score").innerText = score;
+}
+
 function highlightGrapheme(word, grapheme) {
   const pattern = new RegExp(grapheme, 'gi');
   return word.replace(pattern, match => '<span class="highlight">' + match + '</span>');
@@ -344,9 +354,9 @@ function highlightGrapheme(word, grapheme) {
     "correct": "Ae",
     "options": [
       "Ae",
-      "e",
+      "E",
       "ai",
-      "i"
+      "e"
     ],
     "phonemeSound": "eh",
     "tip": "The digraph 'Ae' at the start spells the short /\u0115/ sound. (#8 of 9 spellings for /\u0115/)",
@@ -599,6 +609,8 @@ function highlightGrapheme(word, grapheme) {
       const badge = document.getElementById("badge");
 
       if (isCorrect) {
+        score++;
+        updateScore();
         correctCount++;
         feedback.innerText = `✅ Correct! '${ex.correct}' spells ${ex.phoneme} in '${ex.word}'.`;
         tip.innerText = `📘 Tip: ${ex.tip}`;
