@@ -119,6 +119,7 @@
 <div id="choices"><p style="font-size: 0.9rem; color: #555;">📝 Select the spelling of the <em>highlighted sound</em>:</p></div>
 <button onclick="speakWord()">🔊 Hear Word</button>
 <button onclick="speakSound()">🧠 Hear Sound</button>
+<button onclick="speakWordSlowly()">🔉 Hear Word Slowly</button>
 <p class="feedback" id="feedback"></p>
 <p class="tip" id="tip"></p>
 <p class="syllables" id="syllables"></p>
@@ -299,6 +300,13 @@
 </div>
 <script>
 let score = 0;
+
+let selectedVoice = null;
+speechSynthesis.onvoiceschanged = () => {
+  const voices = speechSynthesis.getVoices();
+  selectedVoice = voices.find(v => v.name.includes("Google US English") || v.name.includes("Microsoft Aria") || v.name.includes("Jenny") || v.name.includes("Guy")) || voices[0];
+};
+
 function updateScore() {
   document.getElementById("score").innerText = score;
 }
@@ -644,31 +652,57 @@ tip.innerText = `📘 Hint: ${ex.tip}`;
       const utterance = new SpeechSynthesisUtterance(`The word is ${examples[current].word}`);
       utterance.lang = "en-US";
       utterance.rate = 0.9;
-      speechSynthesis.speak(utterance);
+      utterance.pitch = 1.4;
+utterance.voice = selectedVoice;
+speechSynthesis.speak(utterance);
     }
 
     function speakSound() {
       const utterance = new SpeechSynthesisUtterance(examples[current].phonemeSound);
       utterance.lang = "en-US";
       utterance.rate = 0.8;
-      speechSynthesis.speak(utterance);
+      utterance.pitch = 1.4;
+utterance.voice = selectedVoice;
+speechSynthesis.speak(utterance);
     }
 
     function speakFeedback(text) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "en-US";
       utterance.rate = 0.85;
-      speechSynthesis.speak(utterance);
+      utterance.pitch = 1.4;
+utterance.voice = selectedVoice;
+speechSynthesis.speak(utterance);
     }
 
     function nextExample() {
       current = (current + 1) % examples.length;
       const percent = Math.round((correctCount / examples.length) * 100);
       document.getElementById('progressFill').style.width = percent + '%';
-      loadExample();
+      
+function speakWordSlowly() {
+  const utterance = new SpeechSynthesisUtterance(`The word is ${examples[current].word}`);
+  utterance.lang = "en-US";
+  utterance.rate = 0.4;
+  utterance.pitch = 1.4;
+utterance.voice = selectedVoice;
+speechSynthesis.speak(utterance);
+}
+
+loadExample();
     }
 
-    loadExample();
+    
+function speakWordSlowly() {
+  const utterance = new SpeechSynthesisUtterance(`The word is ${examples[current].word}`);
+  utterance.lang = "en-US";
+  utterance.rate = 0.4;
+  utterance.pitch = 1.4;
+utterance.voice = selectedVoice;
+speechSynthesis.speak(utterance);
+}
+
+loadExample();
   </script>
 <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
 <h2 style="text-align: center;">Meet your decoding team!</h2>
