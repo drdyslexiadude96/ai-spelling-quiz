@@ -37,3 +37,5 @@ Users can:
    ```bash
    git clone https://github.com/drdyslexiadude96/ai-spelling-quiz.git
    cd ai-spelling-quiz
+<!-- trigger rebuild -->
+
